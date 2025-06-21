@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Leitor de PDF com Chat</title>
+</head>
+<body>
+    <h1>Leitor de PDF com Chat</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="pdf">Selecione o PDF:</label>
+        <input type="file" name="pdf" id="pdf" required>
+        <button type="submit">Enviar PDF</button>
+    </form>
+
+    {% if pdf_carregado %}
+    <hr>
+    {% if pdf_url %}
+    <embed src="{{ pdf_url }}" type="application/pdf" width="100%" height="600px" />
+    {% endif %}
+    <form action="/perguntar" method="post">
+        <label for="pergunta">Pergunta:</label>
+        <input type="text" name="pergunta" id="pergunta" required>
+        <button type="submit">Enviar</button>
+    </form>
+
+    {% if resposta %}
+    <p><strong>Resposta:</strong> {{ resposta }}</p>
+    {% endif %}
+    {% endif %}
+</body>
+</html>
